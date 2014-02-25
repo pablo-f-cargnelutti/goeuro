@@ -1,24 +1,25 @@
-package test;
+package conversor;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
 
 import java.io.File;
 
+import org.junit.Rule;
 import org.junit.Test;
+import org.junit.rules.ExpectedException;
 
-import src.parser.CSV;
-import src.parser.JSON2SCSVParser;
-import src.parser.JsonParserException;
+public class Json2CsvConversorTest {
 
-public class JSON2CSVParserTest {
-
-	private static final String TEST_DATA_PATH = "./src/test/data/";
+	private static final String TEST_DATA_PATH = "./test/main/resources/testdata/";
+	
+	@Rule
+	public ExpectedException expectedException = ExpectedException.none();
 
 	@Test
-	public void testOneElementConversion() throws JsonParserException {
+	public void testOneElementParsing() throws JsonParserException {
 		// Given
-		JSON2SCSVParser parser = JSON2SCSVParser.getInstance();
+		Json2CsvConversor parser = Json2CsvConversor.getInstance();
 		
 		// When
 		CSV csv = parser.fromFile(new File(TEST_DATA_PATH + "oneElement.json"));
@@ -28,9 +29,9 @@ public class JSON2CSVParserTest {
 	}
 	
 	@Test
-	public void testMultipleElementsConversion() throws JsonParserException {
+	public void testMultipleElementsParsing() throws JsonParserException {
 		// Given
-		JSON2SCSVParser parser = JSON2SCSVParser.getInstance();
+		Json2CsvConversor parser = Json2CsvConversor.getInstance();
 		
 		// When
 		CSV csv = parser.fromFile(new File(TEST_DATA_PATH + "multipleElements.json"));
@@ -44,9 +45,9 @@ public class JSON2CSVParserTest {
 	}
 	
 	@Test
-	public void testEmptyJsonConversion() throws JsonParserException {
+	public void testEmptyJsonParsing() throws JsonParserException {
 		// Given
-		JSON2SCSVParser parser = JSON2SCSVParser.getInstance();
+		Json2CsvConversor parser = Json2CsvConversor.getInstance();
 		
 		// When
 		CSV csv = parser.fromFile(new File(TEST_DATA_PATH + "empty.json"));
@@ -56,9 +57,9 @@ public class JSON2CSVParserTest {
 	}
 	
 	@Test
-	public void testOneIncompleteElementWithoutTypeConversion() throws JsonParserException {
+	public void testOneIncompleteElementWithoutTypeParsing() throws JsonParserException {
 		// Given
-		JSON2SCSVParser parser = JSON2SCSVParser.getInstance();
+		Json2CsvConversor parser = Json2CsvConversor.getInstance();
 		
 		// When
 		CSV csv = parser.fromFile(new File(TEST_DATA_PATH + "oneIncompleteElement.json"));
@@ -68,15 +69,27 @@ public class JSON2CSVParserTest {
 	}
 	
 	@Test
-	public void testOneIncompleteElementWithoutGeoPositionConversion() throws JsonParserException {
+	public void testOneIncompleteElementWithoutGeoPositionParsing() throws JsonParserException {
 		// Given
-		JSON2SCSVParser parser = JSON2SCSVParser.getInstance();
+		Json2CsvConversor parser = Json2CsvConversor.getInstance();
 		
 		// When
 		CSV csv = parser.fromFile(new File(TEST_DATA_PATH + "oneElementWithoutGeoPosition.json"));
 		
 		// Then
 		assertEquals("Position,378655,Madrid, Spain,location", csv.toString());
+	}
+	
+	@Test
+	public void testOneElementWithInvalidFormatParsing() throws JsonParserException {
+		// Expect
+		expectedException.expect(JsonParserException.class);
+		
+		// Given
+		Json2CsvConversor parser = Json2CsvConversor.getInstance();
+		
+		// When
+		parser.fromFile(new File(TEST_DATA_PATH + "oneElementWithInvalidFormat.json"));		
 	}
 
 

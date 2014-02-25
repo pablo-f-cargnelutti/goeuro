@@ -1,4 +1,4 @@
-package src.parser;
+package conversor;
 
 public interface CSVData {	
 	CSV toCSV();

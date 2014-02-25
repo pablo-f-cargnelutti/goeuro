@@ -1,7 +1,7 @@
-package src.model;
+package model;
 
-import src.parser.CSV;
-import src.parser.CSVData;
+import conversor.CSV;
+import conversor.CSVData;
 
 
 public class Suggest implements CSVData{

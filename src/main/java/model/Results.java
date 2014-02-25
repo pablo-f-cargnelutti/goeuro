@@ -1,9 +1,9 @@
-package src.model;
+package model;
 
 import java.util.List;
 
-import src.parser.CSV;
-import src.parser.CSVData;
+import conversor.CSV;
+import conversor.CSVData;
 
 public class Results implements CSVData{
 	private List <Suggest> results;

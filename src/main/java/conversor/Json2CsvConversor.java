@@ -1,4 +1,4 @@
-package src.parser;
+package conversor;
 
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -7,18 +7,18 @@ import java.io.IOException;
 import java.io.Reader;
 import java.io.StringReader;
 
-import src.model.Results;
-import src.util.Validate;
+import model.Results;
+import util.Validate;
 
 import com.google.gson.Gson;
 
-public class JSON2SCSVParser {
+public class Json2CsvConversor {
 
-	public static JSON2SCSVParser getInstance() {
-		return new JSON2SCSVParser();
+	public static Json2CsvConversor getInstance() {
+		return new Json2CsvConversor();
 	}
 	
-	private JSON2SCSVParser() {	
+	private Json2CsvConversor() {	
 	}
 
 	public CSV fromString(final String jsonString) throws JsonParserException {

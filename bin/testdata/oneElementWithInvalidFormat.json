@@ -1,0 +1,12 @@
+{
+  "results": [
+    {
+      "_type": "Position",
+      "_id": INVALID
+      "geo_position": {
+        "latitude": 40.4165,
+        "longitude": -3.70256
+      }
+    }
+  ]
+}
