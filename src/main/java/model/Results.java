@@ -2,10 +2,10 @@ package model;
 
 import java.util.List;
 
-import conversor.CSV;
-import conversor.CSVData;
+import converter.Csv;
+import converter.CsvData;
 
-public class Results implements CSVData{
+public class Results implements CsvData{
 	private List <Suggest> results;
 
 	public List <Suggest> getResults() {
@@ -17,8 +17,8 @@ public class Results implements CSVData{
 	}
 
 	@Override
-	public CSV toCSV() {
-		CSV csv = CSV.emptyCSV();
+	public Csv toCSV() {
+		Csv csv = Csv.emptyCSV();
 		for (Suggest suggest : results) {
 			csv.addObjectValue(suggest);
 			csv.addNewLine();

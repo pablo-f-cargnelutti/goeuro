@@ -1,0 +1,39 @@
+{
+  "results": [
+    {
+      "_type": "Position",
+      "geo_position": {
+        "latitude": null,
+        "longitude": null
+      }
+    },
+    {
+      "_type": "Position",
+      "geo_position": {
+        "latitude": null,
+        "longitude": null
+      }
+    },
+    {
+      "_type": "Position",
+      "geo_position": {
+        "latitude": null,
+        "longitude": null
+      }
+    },
+    {
+      "_type": "Position",
+      "geo_position": {
+        "latitude": null,
+        "longitude": null
+      }
+    },
+    {
+      "_type": "Position",
+      "geo_position": {
+        "latitude": null,
+        "longitude": null
+      }
+    }
+  ]
+}

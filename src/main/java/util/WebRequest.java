@@ -1,5 +1,9 @@
 package util;
 
+import java.security.KeyManagementException;
+import java.security.KeyStoreException;
+import java.security.NoSuchAlgorithmException;
+
 import org.apache.http.HttpResponse;
 import org.apache.http.client.methods.HttpGet;
 import org.apache.http.conn.ssl.SSLConnectionSocketFactory;
@@ -15,18 +19,26 @@ public class WebRequest {
 		Validate.notNull(url, "URL cannot be null");
 		HttpGet request = new HttpGet(url);
 		String response = "";
-		SSLContextBuilder builder = new SSLContextBuilder();		
 		try {
-		    builder.loadTrustMaterial(null, new TrustSelfSignedStrategy());
-		    SSLConnectionSocketFactory sslSocketFactory = new SSLConnectionSocketFactory(
-		            builder.build());
-		    CloseableHttpClient httpClient = HttpClients.custom().setSSLSocketFactory(
-	    		sslSocketFactory).build();
+			CloseableHttpClient httpClient = getHttpClientTrustedSelfSigned();
+			
 			HttpResponse httpResponse = httpClient.execute(request);
+			
 			response = EntityUtils.toString(httpResponse.getEntity());
 		} catch (Exception e) {
 			throw new ConnectionException(e.getMessage());
 		} 
 		return response;
 	}
+
+	private static CloseableHttpClient getHttpClientTrustedSelfSigned() throws NoSuchAlgorithmException, KeyStoreException, KeyManagementException {
+		SSLContextBuilder builder = new SSLContextBuilder();		
+	    builder.loadTrustMaterial(null, new TrustSelfSignedStrategy());
+	    SSLConnectionSocketFactory sslSocketFactory = new SSLConnectionSocketFactory(
+	            builder.build());
+	    CloseableHttpClient httpClient = HttpClients.custom().setSSLSocketFactory(
+    		sslSocketFactory).build();
+	    return httpClient;
+	}
+	
 }

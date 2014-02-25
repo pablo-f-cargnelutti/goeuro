@@ -1,15 +1,16 @@
 package util;
 
-import conversor.CSV;
-import conversor.Json2CsvConversor;
-import conversor.JsonParserException;
+import model.Results;
+import converter.Csv;
+import converter.Json2CsvConverter;
+import converter.JsonConverterException;
 
 public class Main {
 
 	private static final String GO_EURO_SUGGEST_SERVICE_URL = "https://api.goeuro.com/api/v1/suggest/position/en/name/";
 
 	public static void main(final String[] args) {
-		CSV csv = CSV.emptyCSV();
+		Csv csv = Csv.emptyCSV();
 		try {
 			validateArguments(args);
 			
@@ -17,12 +18,12 @@ public class Main {
 			
 			String jsonResponse = WebRequest.callHttpsSelfSigned(url);
 			
-			Json2CsvConversor parser = Json2CsvConversor.getInstance();
-			csv = parser.fromString(jsonResponse);
+			Json2CsvConverter parser = Json2CsvConverter.getInstance();
+			csv = parser.convertFromString(jsonResponse, Results.class);
 			
 		} catch (ConnectionException ce) {
 			reportError(ce, "There is a problem with the connection.");
-		} catch (JsonParserException jpe) {
+		} catch (JsonConverterException jpe) {
 			reportError(jpe, "There is a problem during the parsing process.");
 		} catch (IllegalArgumentException iae) {
 			reportError(iae);
@@ -32,9 +33,8 @@ public class Main {
 	}
 
 	private static void validateArguments(final String[] args) {
-		if ( args == null || args.length == 0 || args[0] == null || args[0].length() == 0) {
-			throw new IllegalArgumentException("No argument found. Please add one.");
-		}
+		Validate.notNullOrEmpty(args, "No argument found. Please add one.");
+		Validate.notNullOrEmpty(args[0], "No argument found. Please add one.");
 	}
 
 	private static void reportError(final Exception e, final String message) {

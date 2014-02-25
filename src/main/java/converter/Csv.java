@@ -1,18 +1,18 @@
-package conversor;
+package converter;
 
-public class CSV {
+public class Csv {
 
 	private static final String COMMA = ",";
 	private static final String LINE_BREAK = "\n";
 	
 	private final StringBuilder content;
 
-	private CSV() {
+	private Csv() {
 		this.content = new StringBuilder();
 	}
 	
-	public static CSV emptyCSV() {
-		return new CSV();
+	public static Csv emptyCSV() {
+		return new Csv();
 	}
 	
 	public void addNewLine() {
@@ -42,7 +42,7 @@ public class CSV {
 		this.content.append(value).append(COMMA);		
 	}
 
-	public void addObjectValue(final CSVData csvData) {
+	public void addObjectValue(final CsvData csvData) {
 		if ( csvData != null ) {
 			this.content.append(csvData.toCSV().toString());
 		}

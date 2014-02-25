@@ -1,10 +1,9 @@
 package model;
 
-import conversor.CSV;
-import conversor.CSVData;
+import converter.Csv;
+import converter.CsvData;
 
-
-public class Suggest implements CSVData{
+public class Suggest implements CsvData{
 	String type;
 	int _id;
 	String name;
@@ -41,13 +40,14 @@ public class Suggest implements CSVData{
 	public void setGeoPosition(final GeoPosition geoPosition) {
 		this.geo_position = geoPosition;
 	}
+	
 	/**
 	 * Requested format:
 	 * _type, _id, name, type, latitude, longitude
 	 */
 	@Override
-	public CSV toCSV() {
-		CSV csv = CSV.emptyCSV();
+	public Csv toCSV() {
+		Csv csv = Csv.emptyCSV();
 		csv.addStringValue(_type);
 		csv.addIntValue(_id);
 		csv.addStringValue(name);

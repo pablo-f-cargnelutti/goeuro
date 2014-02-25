@@ -1,9 +1,9 @@
 package model;
 
-import conversor.CSV;
-import conversor.CSVData;
+import converter.Csv;
+import converter.CsvData;
 
-public class GeoPosition implements CSVData{	
+public class GeoPosition implements CsvData{	
 	double latitude;
 	double longitude;
 	public double getLatitude() {
@@ -24,8 +24,8 @@ public class GeoPosition implements CSVData{
 	 * Request format:
 	 * latitude, longitude
 	 */
-	public CSV toCSV() {
-		final CSV csv = CSV.emptyCSV();
+	public Csv toCSV() {
+		final Csv csv = Csv.emptyCSV();
 		csv.addDoubleValue(latitude);
 		csv.addDoubleValue(longitude);
 		return csv;
