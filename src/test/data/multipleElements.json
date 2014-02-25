@@ -1,0 +1,44 @@
+{
+  "results": [
+    {
+      "_type": "Position",
+      "_id": 378655,
+      "name": "Madrid, Spain",
+      "type": "location",
+      "geo_position": {
+        "latitude": 40.4165,
+        "longitude": -3.70256
+      }
+    },
+    {
+      "_type": "Position",
+      "_id": 378654,
+      "name": "Madridejos, Spain",
+      "type": "location",
+      "geo_position": {
+        "latitude": 39.46823,
+        "longitude": -3.53196
+      }
+    },
+    {
+      "_type": "Position",
+      "_id": 430256,
+      "name": "Madridanos, Spain",
+      "type": "location",
+      "geo_position": {
+        "latitude": 41.47967,
+        "longitude": -5.6046
+      }
+    },
+    {
+      "_type": "Position",
+      "_id": 378630,
+      "name": "Las Rozas de Madrid, Spain",
+      "type": "location",
+      "geo_position": {
+        "latitude": 40.49292,
+        "longitude": -3.87371
+      }
+    }
+  ]
+}
