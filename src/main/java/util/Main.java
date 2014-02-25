@@ -7,6 +7,7 @@ import converter.JsonConverterException;
 
 public class Main {
 
+	private static final String MISSING_VARIABLE_MESSAGE = "No argument found. Please add one. The call should look like: goEuroTest.jar Argentina";
 	private static final String GO_EURO_SUGGEST_SERVICE_URL = "https://api.goeuro.com/api/v1/suggest/position/en/name/";
 
 	public static void main(final String[] args) {
@@ -33,8 +34,8 @@ public class Main {
 	}
 
 	private static void validateArguments(final String[] args) {
-		Validate.notNullOrEmpty(args, "No argument found. Please add one.");
-		Validate.notNullOrEmpty(args[0], "No argument found. Please add one. The call should look like: goEuroTest.jar Argentina");
+		Validate.notNullOrEmpty(args, MISSING_VARIABLE_MESSAGE);
+		Validate.notNullOrEmpty(args[0], MISSING_VARIABLE_MESSAGE);
 	}
 
 	private static void reportError(final Exception e, final String message) {
