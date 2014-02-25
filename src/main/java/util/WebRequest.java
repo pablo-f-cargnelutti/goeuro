@@ -39,6 +39,5 @@ public class WebRequest {
 	    CloseableHttpClient httpClient = HttpClients.custom().setSSLSocketFactory(
     		sslSocketFactory).build();
 	    return httpClient;
-	}
-	
+	}	
 }

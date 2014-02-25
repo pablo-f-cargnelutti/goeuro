@@ -21,6 +21,8 @@ public class Main {
 			Json2CsvConverter parser = Json2CsvConverter.getInstance();
 			csv = parser.convertFromString(jsonResponse, Results.class);
 			
+			System.out.println(csv);
+			
 		} catch (ConnectionException ce) {
 			reportError(ce, "There is a problem with the connection.");
 		} catch (JsonConverterException jpe) {
@@ -28,13 +30,11 @@ public class Main {
 		} catch (IllegalArgumentException iae) {
 			reportError(iae);
 		}
-		
-		System.out.println(csv);
 	}
 
 	private static void validateArguments(final String[] args) {
 		Validate.notNullOrEmpty(args, "No argument found. Please add one.");
-		Validate.notNullOrEmpty(args[0], "No argument found. Please add one.");
+		Validate.notNullOrEmpty(args[0], "No argument found. Please add one. The call should look like: goEuroTest.jar Argentina");
 	}
 
 	private static void reportError(final Exception e, final String message) {
